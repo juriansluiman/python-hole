@@ -9,7 +9,7 @@ import async_timeout
 from . import exceptions
 
 _LOGGER = logging.getLogger(__name__)
-_INSTANCE = "{schema}://{host}/{location}/api.php"
+_INSTANCE = "{schema}://{host}/{location}api.php"
 
 
 class Hole(object):
@@ -30,7 +30,7 @@ class Hole(object):
         self.verify_tls = verify_tls
         self.schema = "https" if self.tls else "http"
         self.host = host
-        self.location = location
+        self.location = location.strip("/") + "/" if location else ""
         self.api_token = api_token
         self.data = {}
         self.versions = {}
